@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import ru.mnk.core.domain.*;
 import ru.mnk.core.repository.PaymentRepository;
 import ru.mnk.core.service.api.PaymentService;
@@ -17,15 +19,18 @@ public class PaymentServiceImpl implements PaymentService {
     private final PaymentRepository paymentRepository;
     private final PaymentValidator paymentValidator;
 
+    @Transactional(propagation = Propagation.MANDATORY)
     public Payment addMoneyToAccount(BigDecimal amount, Currency currency, Account account) {
         return transferMoney(amount, currency, getRootAccount(account), account);
     }
 
+    @Transactional(propagation = Propagation.MANDATORY)
     public Payment removeMoneyFromAccount(BigDecimal amount, Currency currency, Account account) {
         return transferMoney(amount, currency, account, getRootAccount(account));
     }
 
     @SneakyThrows
+    @Transactional(propagation = Propagation.MANDATORY)
     public Payment transferMoney(BigDecimal amount, Currency currency, Account sender, Account receiver) {
         Payment payment = new Payment();
         payment.setAmount(amount);

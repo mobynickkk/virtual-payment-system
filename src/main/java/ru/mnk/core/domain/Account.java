@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -21,10 +22,10 @@ public class Account {
     private Status status;
 
     @OneToMany(mappedBy = "sender", fetch = FetchType.LAZY)
-    private Set<Payment> sentPayments;
+    private Set<Payment> sentPayments = new HashSet<>();
 
     @OneToMany(mappedBy = "receiver", fetch = FetchType.LAZY)
-    private Set<Payment> receivedPayments;
+    private Set<Payment> receivedPayments = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "paymentSystemId", nullable = false)

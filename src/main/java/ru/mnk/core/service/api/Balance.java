@@ -1,6 +1,5 @@
 package ru.mnk.core.service.api;
 
-import lombok.Data;
 import ru.mnk.core.domain.Currency;
 
 import java.math.BigDecimal;
@@ -10,6 +9,7 @@ import java.util.Map;
 import java.util.Set;
 
 public record Balance(Map<Currency, BigDecimal> balancesInCurrencies) {
+
     public BigDecimal getDirectBalance(Currency currency) {
         return balancesInCurrencies.getOrDefault(currency, BigDecimal.ZERO);
     }

@@ -2,6 +2,7 @@ package ru.mnk.core.service.impl;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import ru.mnk.core.domain.Currency;
@@ -19,6 +20,7 @@ public class CurrencyServiceImpl implements CurrencyService {
     private final CurrencyRepository currencyRepository;
 
     @Override
+    @Transactional(propagation = Propagation.MANDATORY)
     public Currency addCurrency(String code, PaymentSystem paymentSystem) {
         Optional<Currency> existingCurrency = currencyRepository.findByCodeAndPaymentSystem(code, paymentSystem);
         if (existingCurrency.isPresent()) {
@@ -33,6 +35,7 @@ public class CurrencyServiceImpl implements CurrencyService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.MANDATORY)
     public void removeCurrency(String code, PaymentSystem paymentSystem) {
         Optional<Currency> existingCurrency = currencyRepository.findByCodeAndPaymentSystem(code, paymentSystem);
         if (existingCurrency.isEmpty()) {
@@ -42,12 +45,13 @@ public class CurrencyServiceImpl implements CurrencyService {
     }
 
     @Override
-    @Transactional
+    @Transactional(propagation = Propagation.MANDATORY)
     public void setExchangeRate(Currency baseCurrency, Currency currency, BigDecimal rate) {
         currency.setRate(baseCurrency.getRate().multiply(rate));
     }
 
     @Override
+    @Transactional(readOnly = true, propagation = Propagation.MANDATORY)
     public BigDecimal getExchangeRate(Currency from, Currency to) {
         return to.getRate().divide(from.getRate(), new MathContext(4));
     }

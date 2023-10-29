@@ -12,6 +12,7 @@ import java.util.Set;
 
 @Repository
 public interface PaymentRepository extends JpaRepository<Payment, String> {
+
     Set<Payment> findAllByStatus(Status status);
 
     Set<Payment> findAllByCurrency(Currency currency);

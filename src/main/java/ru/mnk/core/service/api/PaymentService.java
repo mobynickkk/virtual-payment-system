@@ -7,6 +7,7 @@ import ru.mnk.core.domain.Payment;
 import java.math.BigDecimal;
 
 public interface PaymentService {
+
     Payment addMoneyToAccount(BigDecimal amount, Currency currency, Account account);
 
     Payment removeMoneyFromAccount(BigDecimal amount, Currency currency, Account account);

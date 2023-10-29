@@ -6,6 +6,7 @@ import ru.mnk.core.domain.PaymentSystem;
 import java.math.BigDecimal;
 
 public interface CurrencyService {
+
     Currency addCurrency(String code, PaymentSystem paymentSystem);
 
     void removeCurrency(String code, PaymentSystem paymentSystem);
