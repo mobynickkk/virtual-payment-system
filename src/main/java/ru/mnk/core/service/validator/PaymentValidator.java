@@ -3,8 +3,8 @@ package ru.mnk.core.service.validator;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
 
-import ru.mnk.core.domain.Payment;
-import ru.mnk.core.domain.PaymentSystem;
+import ru.mnk.domain.entity.Payment;
+import ru.mnk.domain.entity.PaymentSystem;
 
 import java.math.BigDecimal;
 

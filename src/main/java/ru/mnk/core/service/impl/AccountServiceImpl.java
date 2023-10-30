@@ -6,18 +6,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import ru.mnk.core.domain.Account;
-import ru.mnk.core.domain.Currency;
-import ru.mnk.core.domain.Payment;
+import ru.mnk.domain.entity.Account;
+import ru.mnk.domain.entity.Currency;
+import ru.mnk.domain.entity.Payment;
 import ru.mnk.core.exceptions.NotFoundException;
-import ru.mnk.core.repository.AccountRepository;
+import ru.mnk.domain.repository.AccountRepository;
 import ru.mnk.core.service.api.AccountService;
 import ru.mnk.core.service.api.Balance;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 
 @Service

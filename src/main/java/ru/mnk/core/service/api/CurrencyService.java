@@ -1,7 +1,7 @@
 package ru.mnk.core.service.api;
 
-import ru.mnk.core.domain.Currency;
-import ru.mnk.core.domain.PaymentSystem;
+import ru.mnk.domain.entity.Currency;
+import ru.mnk.domain.entity.PaymentSystem;
 
 import java.math.BigDecimal;
 

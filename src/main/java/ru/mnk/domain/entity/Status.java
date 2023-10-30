@@ -1,4 +1,4 @@
-package ru.mnk.core.domain;
+package ru.mnk.domain.entity;
 
 public enum Status {
     IN_PROCESS,

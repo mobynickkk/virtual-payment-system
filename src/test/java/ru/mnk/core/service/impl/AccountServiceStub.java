@@ -4,9 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-import ru.mnk.core.domain.Account;
-import ru.mnk.core.domain.Currency;
-import ru.mnk.core.domain.Payment;
+import ru.mnk.domain.entity.Account;
+import ru.mnk.domain.entity.Currency;
+import ru.mnk.domain.entity.Payment;
 import ru.mnk.core.service.api.AccountService;
 import ru.mnk.core.service.api.Balance;
 

@@ -5,11 +5,10 @@ import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import ru.mnk.core.domain.Account;
-import ru.mnk.core.domain.Currency;
-import ru.mnk.core.domain.Payment;
+import ru.mnk.domain.entity.Account;
+import ru.mnk.domain.entity.Currency;
+import ru.mnk.domain.entity.Payment;
 import ru.mnk.core.exceptions.NotEnoughMoneyException;
-import ru.mnk.core.exceptions.NotFoundException;
 import ru.mnk.core.service.api.*;
 
 import java.math.BigDecimal;

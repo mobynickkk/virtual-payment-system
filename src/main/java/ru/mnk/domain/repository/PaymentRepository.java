@@ -1,12 +1,12 @@
-package ru.mnk.core.repository;
+package ru.mnk.domain.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import ru.mnk.core.domain.Account;
-import ru.mnk.core.domain.Currency;
-import ru.mnk.core.domain.Payment;
-import ru.mnk.core.domain.Status;
+import ru.mnk.domain.entity.Account;
+import ru.mnk.domain.entity.Currency;
+import ru.mnk.domain.entity.Payment;
+import ru.mnk.domain.entity.Status;
 
 import java.util.Set;
 

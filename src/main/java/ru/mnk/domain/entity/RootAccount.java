@@ -1,4 +1,4 @@
-package ru.mnk.core.domain;
+package ru.mnk.domain.entity;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;

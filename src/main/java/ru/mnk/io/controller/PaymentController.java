@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ru.mnk.core.domain.Payment;
+import ru.mnk.domain.entity.Payment;
 import ru.mnk.core.service.api.PaymentFacade;
 import ru.mnk.io.dto.PaymentDto;
 

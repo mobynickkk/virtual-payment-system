@@ -4,8 +4,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
-import ru.mnk.core.domain.Currency;
-import ru.mnk.core.repository.CurrencyRepository;
+import ru.mnk.domain.entity.Currency;
+import ru.mnk.domain.repository.CurrencyRepository;
 import ru.mnk.core.service.api.CurrencyService;
 
 import java.math.BigDecimal;

@@ -3,7 +3,7 @@ package ru.mnk.io.converter;
 import org.springframework.core.convert.converter.Converter;
 
 import org.springframework.stereotype.Service;
-import ru.mnk.core.domain.Currency;
+import ru.mnk.domain.entity.Currency;
 import ru.mnk.core.service.api.Balance;
 import ru.mnk.io.dto.BalanceDto;
 

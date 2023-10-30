@@ -6,10 +6,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import ru.mnk.core.domain.Currency;
-import ru.mnk.core.domain.PaymentSystem;
+import ru.mnk.domain.entity.Currency;
+import ru.mnk.domain.entity.PaymentSystem;
 import ru.mnk.core.exceptions.NotFoundException;
-import ru.mnk.core.repository.CurrencyRepository;
+import ru.mnk.domain.repository.CurrencyRepository;
 import ru.mnk.core.service.api.CurrencyService;
 
 import java.math.BigDecimal;

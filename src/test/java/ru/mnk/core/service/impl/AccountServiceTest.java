@@ -7,9 +7,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import ru.mnk.core.domain.Account;
-import ru.mnk.core.domain.Currency;
-import ru.mnk.core.domain.Payment;
+import ru.mnk.domain.entity.Account;
+import ru.mnk.domain.entity.Currency;
+import ru.mnk.domain.entity.Payment;
 import ru.mnk.core.service.api.CurrencyService;
 
 import java.math.BigDecimal;
@@ -20,7 +20,7 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import static ru.mnk.core.domain.Status.DONE;
+import static ru.mnk.domain.entity.Status.DONE;
 
 @ExtendWith(MockitoExtension.class)
 public class AccountServiceTest {

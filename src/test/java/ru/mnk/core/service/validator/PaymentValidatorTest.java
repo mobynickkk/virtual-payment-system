@@ -5,8 +5,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import ru.mnk.core.domain.*;
+import ru.mnk.core.entities.*;
 import ru.mnk.core.exceptions.ValidationException;
+import ru.mnk.domain.entity.*;
 
 import java.math.BigDecimal;
 
