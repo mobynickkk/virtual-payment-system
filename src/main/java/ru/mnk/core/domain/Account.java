@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import ru.mnk.core.service.api.Balance;
+
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -30,6 +32,9 @@ public class Account {
     @ManyToOne
     @JoinColumn(name = "paymentSystemId", nullable = false)
     private PaymentSystem paymentSystem;
+
+    @Transient
+    private Balance lastCalculatedBalance;
 
     @Override
     public boolean equals(Object o) {

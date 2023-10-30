@@ -18,7 +18,7 @@ public class Currency {
     @Column(name = "code", nullable = false)
     private String code;
 
-    private BigDecimal rate;
+    private BigDecimal rate = BigDecimal.ONE;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "paymentSystemId", nullable = false)

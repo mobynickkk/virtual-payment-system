@@ -33,12 +33,14 @@ public class PaymentServiceImpl implements PaymentService {
     @Transactional(propagation = Propagation.MANDATORY)
     public Payment transferMoney(BigDecimal amount, Currency currency, Account sender, Account receiver) {
         Payment payment = new Payment();
+        payment.setStatus(Status.IN_PROCESS);
         payment.setAmount(amount);
         payment.setCurrency(currency);
         payment.setSender(sender);
         payment.setReceiver(receiver);
         paymentValidator.validate(payment);
         paymentRepository.save(payment);
+        payment.setStatus(Status.DONE);
         return payment;
     }
 
