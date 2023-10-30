@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import ru.mnk.core.entities.*;
 import ru.mnk.domain.repository.PaymentRepository;
 import ru.mnk.core.service.api.AccountService;
 import ru.mnk.core.service.validator.PaymentValidator;

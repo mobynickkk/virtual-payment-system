@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import ru.mnk.core.entities.*;
 import ru.mnk.domain.repository.PaymentRepository;
 import ru.mnk.core.service.api.PaymentService;
 import ru.mnk.core.service.validator.PaymentValidator;

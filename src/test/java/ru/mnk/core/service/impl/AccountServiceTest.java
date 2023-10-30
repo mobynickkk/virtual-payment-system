@@ -11,6 +11,7 @@ import ru.mnk.domain.entity.Account;
 import ru.mnk.domain.entity.Currency;
 import ru.mnk.domain.entity.Payment;
 import ru.mnk.core.service.api.CurrencyService;
+import ru.mnk.domain.repository.AccountRepository;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -30,8 +31,9 @@ public class AccountServiceTest {
     private static final BigDecimal R4D = new BigDecimal(92);
 
     private static final CurrencyService currencyService = mock(CurrencyService.class);
+    private static final AccountRepository accountRepository = mock(AccountRepository.class);
     @InjectMocks
-    private final AccountServiceImpl accountService = new AccountServiceImpl(currencyService);
+    private final AccountServiceImpl accountService = new AccountServiceImpl(accountRepository);
 
     @BeforeAll
     public static void before() {
