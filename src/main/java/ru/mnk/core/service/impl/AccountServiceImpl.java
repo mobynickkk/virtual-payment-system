@@ -1,6 +1,7 @@
 package ru.mnk.core.service.impl;
 
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -8,19 +9,21 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.mnk.core.domain.Account;
 import ru.mnk.core.domain.Currency;
 import ru.mnk.core.domain.Payment;
+import ru.mnk.core.exceptions.NotFoundException;
+import ru.mnk.core.repository.AccountRepository;
 import ru.mnk.core.service.api.AccountService;
 import ru.mnk.core.service.api.Balance;
-import ru.mnk.core.service.api.CurrencyService;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
 @AllArgsConstructor
 public class AccountServiceImpl implements AccountService {
-    private final CurrencyService currencyService;
+    private final AccountRepository accountRepository;
 
     @Override
     @Transactional(readOnly = true, propagation = Propagation.MANDATORY)
@@ -32,6 +35,13 @@ public class AccountServiceImpl implements AccountService {
         Balance positiveBalance = new Balance(receives);
         Balance negativeBalance = new Balance(sents).negate();
         return positiveBalance.add(negativeBalance);
+    }
+
+    @Override
+    @SneakyThrows
+    @Transactional(readOnly = true, propagation = Propagation.MANDATORY)
+    public Account getAccount(Long id) {
+        return accountRepository.findById(id).orElseThrow(NotFoundException::new);
     }
 
     private static HashMap<Currency, BigDecimal> getBalanceMap(Set<Payment> receivedPayments) {

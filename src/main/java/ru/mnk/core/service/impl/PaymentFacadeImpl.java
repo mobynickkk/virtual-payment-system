@@ -9,6 +9,7 @@ import ru.mnk.core.domain.Account;
 import ru.mnk.core.domain.Currency;
 import ru.mnk.core.domain.Payment;
 import ru.mnk.core.exceptions.NotEnoughMoneyException;
+import ru.mnk.core.exceptions.NotFoundException;
 import ru.mnk.core.service.api.*;
 
 import java.math.BigDecimal;
@@ -24,6 +25,16 @@ public class PaymentFacadeImpl implements PaymentFacade {
     @Override
     @Transactional
     @SneakyThrows
+    public Payment transferMoney(BigDecimal amount, String currencyCode, Long senderId, Long receiverId) {
+        Account sender = accountService.getAccount(senderId);
+        Account receiver = accountService.getAccount(receiverId);
+        Currency currency = currencyService.getCurrency(currencyCode, sender.getPaymentSystem());
+        return transferMoney(amount, currency, sender, receiver);
+    }
+
+    @Override
+    @Transactional
+    @SneakyThrows
     public Payment transferMoney(BigDecimal amount, Currency currency, Account sender, Account receiver) {
         Balance balance = accountService.getBalance(sender);
         BigDecimal availableBalance = balance.getDirectBalance(currency);
@@ -31,6 +42,14 @@ public class PaymentFacadeImpl implements PaymentFacade {
             throw new NotEnoughMoneyException();
         }
         return paymentService.transferMoney(amount, currency, sender, receiver);
+    }
+
+    @Override
+    public Payment transferMoneyWithConversion(BigDecimal amount, String currencyCode, Long senderId, Long receiverId) {
+        Account sender = accountService.getAccount(senderId);
+        Account receiver = accountService.getAccount(receiverId);
+        Currency currency = currencyService.getCurrency(currencyCode, sender.getPaymentSystem());
+        return transferMoneyWithConversion(amount, currency, sender, receiver);
     }
 
     @Override

@@ -5,4 +5,6 @@ import ru.mnk.core.domain.Account;
 public interface AccountService {
 
     Balance getBalance(Account account);
+
+    Account getAccount(Long id);
 }

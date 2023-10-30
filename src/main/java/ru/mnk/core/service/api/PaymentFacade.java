@@ -9,9 +9,13 @@ import java.util.Set;
 
 public interface PaymentFacade {
 
-    Payment transferMoney(BigDecimal amount, Currency currency, Account from, Account to);
+    Payment transferMoney(BigDecimal amount, String currencyCode, Long senderId, Long receiverId);
 
-    Payment transferMoneyWithConversion(BigDecimal amount, Currency currency, Account from, Account to);
+    Payment transferMoney(BigDecimal amount, Currency currency, Account sender, Account receiver);
+
+    Payment transferMoneyWithConversion(BigDecimal amount, String currencyCode, Long senderId, Long receiverId);
+
+    Payment transferMoneyWithConversion(BigDecimal amount, Currency currency, Account sender, Account receiver);
 
     void convertMoney(BigDecimal amount, Currency from, Currency to, Account account);
 

@@ -1,12 +1,14 @@
 package ru.mnk.core.service.impl;
 
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import ru.mnk.core.domain.Currency;
 import ru.mnk.core.domain.PaymentSystem;
+import ru.mnk.core.exceptions.NotFoundException;
 import ru.mnk.core.repository.CurrencyRepository;
 import ru.mnk.core.service.api.CurrencyService;
 
@@ -18,6 +20,18 @@ import java.util.Optional;
 @AllArgsConstructor
 public class CurrencyServiceImpl implements CurrencyService {
     private final CurrencyRepository currencyRepository;
+
+    @Override
+    @SneakyThrows
+    @Transactional(readOnly = true, propagation = Propagation.MANDATORY)
+    public Currency getCurrency(String code, PaymentSystem paymentSystem) {
+        Optional<Currency> existingCurrency = currencyRepository.findByCodeAndPaymentSystem(code, paymentSystem);
+        if (existingCurrency.isPresent()) {
+            return existingCurrency.get();
+        }
+
+        throw new NotFoundException();
+    }
 
     @Override
     @Transactional(propagation = Propagation.MANDATORY)

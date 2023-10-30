@@ -28,4 +28,9 @@ public class AccountServiceStub implements AccountService {
                         .map(Payment::getAmount)
                         .reduce(BigDecimal.ZERO, BigDecimal::add)));
     }
+
+    @Override
+    public Account getAccount(Long id) {
+        return null;
+    }
 }
