@@ -2,9 +2,9 @@ package ru.mnk.core.service.impl;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
 import ru.mnk.core.domain.Account;
 import ru.mnk.core.domain.Currency;
 import ru.mnk.core.domain.Payment;

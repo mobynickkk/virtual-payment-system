@@ -3,6 +3,7 @@ package ru.mnk.core.service.validator;
 import org.springframework.validation.DataBinder;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.Validator;
+
 import ru.mnk.core.exceptions.ValidationException;
 
 public abstract class CommonStrictValidator implements Validator {
