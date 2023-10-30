@@ -17,7 +17,7 @@ public interface PaymentFacade {
 
     void addMoney(BigDecimal amount, Currency currency, Account account);
 
-    void addMoney(BigDecimal amount, Currency currency, Set<Account> account);
+    void addMoney(BigDecimal amount, Currency currency, Set<Account> accounts);
 
     void addMoney(BigDecimal amount, Currency currency);
 }

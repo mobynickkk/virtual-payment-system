@@ -42,6 +42,21 @@ public class PaymentFacadeImpl implements PaymentFacade {
             throw new NotEnoughMoneyException();
         }
 
+        BigDecimal delta = amount.subtract(balance.getDirectBalance(currency));
+
+        for (Currency cur : balance.getCurrencies()) {
+            if (cur.equals(currency)) {
+                continue;
+            }
+            if (delta.compareTo(BigDecimal.ZERO) == 0) {
+                break;
+            }
+            BigDecimal sum = currencyService.getExchangeRate(currency, cur).multiply(delta)
+                    .min(balance.getDirectBalance(cur));
+            convertMoney(sum, cur, currency, sender);
+            delta = delta.subtract(sum.multiply(currencyService.getExchangeRate(cur, currency)));
+        }
+
         return paymentService.transferMoney(amount, currency, sender, receiver);
     }
 
@@ -55,24 +70,26 @@ public class PaymentFacadeImpl implements PaymentFacade {
             throw new NotEnoughMoneyException();
         }
         BigDecimal convertedAmount = amount.multiply(currencyService.getExchangeRate(from, to));
-
+        paymentService.removeMoneyFromAccount(amount, from, account);
+        paymentService.addMoneyToAccount(convertedAmount, to, account);
     }
 
     @Override
     @Transactional
     public void addMoney(BigDecimal amount, Currency currency, Account account) {
-
+        paymentService.addMoneyToAccount(amount, currency, account);
     }
 
     @Override
     @Transactional
-    public void addMoney(BigDecimal amount, Currency currency, Set<Account> account) {
-
+    public void addMoney(BigDecimal amount, Currency currency, Set<Account> accounts) {
+        accounts.forEach(it -> paymentService.addMoneyToAccount(amount, currency, it));
     }
 
     @Override
     @Transactional
     public void addMoney(BigDecimal amount, Currency currency) {
-
+        currency.getPaymentSystem().getAccounts()
+                .forEach(it -> paymentService.addMoneyToAccount(amount, currency, it));
     }
 }

@@ -42,6 +42,10 @@ public record Balance(Map<Currency, BigDecimal> balancesInCurrencies) {
         return this;
     }
 
+    public Set<Currency> getCurrencies() {
+        return balancesInCurrencies.keySet();
+    }
+
     private Set<Currency> getAllCurrencies(Balance other) {
         Set<Currency> sum = new HashSet<>(this.balancesInCurrencies.keySet());
         sum.addAll(other.balancesInCurrencies.keySet());
