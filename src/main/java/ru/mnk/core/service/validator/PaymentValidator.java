@@ -2,7 +2,7 @@ package ru.mnk.core.service.validator;
 
 import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
-import org.springframework.validation.Validator;
+
 import ru.mnk.core.domain.Payment;
 import ru.mnk.core.domain.PaymentSystem;
 
@@ -22,8 +22,12 @@ public class PaymentValidator extends CommonStrictValidator {
             errors.reject("different.paymentSystems");
         }
 
-        if (!isAmountPositive(payment)) {
+        if (isNonPositiveAmount(payment)) {
             errors.reject("negative.amount");
+        }
+
+        if (isSameSourceAndDestination(payment)) {
+            errors.reject("same.source.and.destination");
         }
     }
 
@@ -34,7 +38,11 @@ public class PaymentValidator extends CommonStrictValidator {
         return senderPaymentSystem.equals(receiverPaymentSystem) && senderPaymentSystem.equals(currencyPaymentSystem);
     }
 
-    private boolean isAmountPositive(Payment payment) {
+    private boolean isNonPositiveAmount(Payment payment) {
         return BigDecimal.ZERO.compareTo(payment.getAmount()) >= 0;
+    }
+
+    private boolean isSameSourceAndDestination(Payment payment) {
+        return payment.getSender().equals(payment.getReceiver());
     }
 }
