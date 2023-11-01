@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.mnk.core.service.api.AccountService;
 import ru.mnk.core.service.api.CurrencyService;
 import ru.mnk.core.service.api.PaymentService;
-import ru.mnk.core.service.api.facade.PaymentCallbackService;
+import ru.mnk.core.service.api.PaymentCallbackService;
 import ru.mnk.core.service.api.facade.PaymentFacade;
 import ru.mnk.domain.entity.Account;
 import ru.mnk.domain.entity.Currency;

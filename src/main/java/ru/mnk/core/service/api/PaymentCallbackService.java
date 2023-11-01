@@ -1,4 +1,4 @@
-package ru.mnk.core.service.api.facade;
+package ru.mnk.core.service.api;
 
 import ru.mnk.domain.entity.Payment;
 

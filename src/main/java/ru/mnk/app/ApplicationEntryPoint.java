@@ -1,4 +1,4 @@
-package ru.mnk.entry;
+package ru.mnk.app;
 
 
 import org.springframework.boot.SpringApplication;

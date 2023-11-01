@@ -12,6 +12,24 @@
         <junit.platform.version>1.8.1</junit.platform.version>
     </properties>
 
+    <profiles>
+        <profile>
+            <id>no-integration</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <spring.profiles.active>no-integration</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>kafka</id>
+            <properties>
+                <spring.profiles.active>kafka</spring.profiles.active>
+            </properties>
+        </profile>
+    </profiles>
+
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
         <dependency>
