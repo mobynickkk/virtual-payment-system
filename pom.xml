@@ -4,13 +4,15 @@
   <groupId>ru.mnk</groupId>
   <artifactId>virtual-payment-system</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <name>Archetype - virtual-payment-system</name>
+  <name>virtual-payment-system</name>
   <url>http://maven.apache.org</url>
 
-    <properties>
-        <junit.jupiter.version>5.8.1</junit.jupiter.version>
-        <junit.platform.version>1.8.1</junit.platform.version>
-    </properties>
+    <parent>
+        <groupId>ru.mnk</groupId>
+        <artifactId>bom</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>bom.xml</relativePath>
+    </parent>
 
     <profiles>
         <profile>
@@ -31,26 +33,22 @@
     </profiles>
 
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <version>3.1.5</version>
+            <version>${spring.boot.version}</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
-            <version>3.1.5</version>
+            <version>${spring.boot.version}</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.30</version>
             <scope>provided</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
@@ -90,30 +88,5 @@
             <artifactId>spring-kafka</artifactId>
             <version>3.0.11</version>
         </dependency>
-
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>17</source>
-                    <target>17</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.19.1</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.junit.platform</groupId>
-                        <artifactId>junit-platform-surefire-provider</artifactId>
-                        <version>1.1.0</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-        </plugins>
-    </build>
 </project>
