@@ -17,7 +17,11 @@ public interface PaymentFacade {
 
     Payment transferMoneyWithConversion(BigDecimal amount, Currency currency, Account sender, Account receiver);
 
+    void convertMoney(BigDecimal amount, String from, String to, Long accountId);
+
     void convertMoney(BigDecimal amount, Currency from, Currency to, Account account);
+
+    void addMoney(BigDecimal amount, String currencyCode, Long accountId);
 
     void addMoney(BigDecimal amount, Currency currency, Account account);
 

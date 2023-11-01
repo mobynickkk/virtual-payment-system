@@ -85,6 +85,15 @@ public class PaymentFacadeImpl implements PaymentFacade {
 
     @Override
     @Transactional
+    public void convertMoney(BigDecimal amount, String from, String to, Long accountId) {
+        Account account = accountService.getAccount(accountId);
+        Currency currencyFrom = currencyService.getCurrency(from, account.getPaymentSystem());
+        Currency currencyTo = currencyService.getCurrency(to, account.getPaymentSystem());
+        convertMoney(amount, currencyFrom, currencyTo, account);
+    }
+
+    @Override
+    @Transactional
     @SneakyThrows
     public void convertMoney(BigDecimal amount, Currency from, Currency to, Account account) {
         Balance balance = accountService.getBalance(account);
@@ -95,6 +104,14 @@ public class PaymentFacadeImpl implements PaymentFacade {
         BigDecimal convertedAmount = amount.multiply(currencyService.getExchangeRate(from, to));
         paymentService.removeMoneyFromAccount(amount, from, account);
         paymentService.addMoneyToAccount(convertedAmount, to, account);
+    }
+
+    @Override
+    @Transactional
+    public void addMoney(BigDecimal amount, String currencyCode, Long accountId) {
+        Account account = accountService.getAccount(accountId);
+        Currency currency = currencyService.getCurrency(currencyCode, account.getPaymentSystem());
+        addMoney(amount, currency, account);
     }
 
     @Override
