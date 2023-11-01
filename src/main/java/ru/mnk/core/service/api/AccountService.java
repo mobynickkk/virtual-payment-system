@@ -7,4 +7,6 @@ public interface AccountService {
     Balance getBalance(Account account);
 
     Account getAccount(Long id);
+
+    Account createAccount(Long paymentSystemId);
 }

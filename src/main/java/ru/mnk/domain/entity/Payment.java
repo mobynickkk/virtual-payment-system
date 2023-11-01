@@ -14,7 +14,6 @@ import java.util.Objects;
 public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "id", nullable = false)
     private String id;
 
     @ManyToOne

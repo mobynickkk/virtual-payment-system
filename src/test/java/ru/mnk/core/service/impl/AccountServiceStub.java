@@ -33,4 +33,9 @@ public class AccountServiceStub implements AccountService {
     public Account getAccount(Long id) {
         return null;
     }
+
+    @Override
+    public Account createAccount(Long paymentSystemId) {
+        return null;
+    }
 }

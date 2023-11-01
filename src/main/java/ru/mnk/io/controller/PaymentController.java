@@ -3,6 +3,7 @@ package ru.mnk.io.controller;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,7 +18,7 @@ public class PaymentController {
     private final PaymentFacade paymentFacade;
 
     @PostMapping
-    public ResponseEntity pay(PaymentDto paymentDto) {
+    public ResponseEntity pay(@RequestBody PaymentDto paymentDto) {
         try {
             Payment payment = paymentFacade.transferMoney(
                     paymentDto.amount(),

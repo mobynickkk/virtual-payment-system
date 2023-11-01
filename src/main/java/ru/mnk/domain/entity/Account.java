@@ -18,6 +18,8 @@ import java.util.Set;
 @DiscriminatorValue("avg")
 public class Account {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "accounts_seq")
+    @SequenceGenerator(name = "accounts_seq", sequenceName = "accounts_seq", allocationSize=1)
     private Long id;
 
     @Enumerated(EnumType.STRING)
@@ -30,7 +32,7 @@ public class Account {
     private Set<Payment> receivedPayments = new HashSet<>();
 
     @ManyToOne
-    @JoinColumn(name = "paymentSystemId", nullable = false)
+    @JoinColumn(name = "payment_system_id", nullable = false)
     private PaymentSystem paymentSystem;
 
     @Transient

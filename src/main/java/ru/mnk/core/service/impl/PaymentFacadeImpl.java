@@ -37,7 +37,7 @@ public class PaymentFacadeImpl implements PaymentFacade {
     public Payment transferMoney(BigDecimal amount, Currency currency, Account sender, Account receiver) {
         Balance balance = accountService.getBalance(sender);
         BigDecimal availableBalance = balance.getDirectBalance(currency);
-        if (amount.compareTo(availableBalance) < 0) {
+        if (amount.compareTo(availableBalance) > 0) {
             throw new NotEnoughMoneyException();
         }
         return paymentService.transferMoney(amount, currency, sender, receiver);
@@ -57,7 +57,7 @@ public class PaymentFacadeImpl implements PaymentFacade {
     public Payment transferMoneyWithConversion(BigDecimal amount, Currency currency, Account sender, Account receiver) {
         Balance balance = accountService.getBalance(sender);
         BigDecimal availableBalance = balance.getBalance(currency, currencyService);
-        if (amount.compareTo(availableBalance) < 0) {
+        if (amount.compareTo(availableBalance) > 0) {
             throw new NotEnoughMoneyException();
         }
 
@@ -85,7 +85,7 @@ public class PaymentFacadeImpl implements PaymentFacade {
     public void convertMoney(BigDecimal amount, Currency from, Currency to, Account account) {
         Balance balance = accountService.getBalance(account);
         BigDecimal availableBalance = balance.getDirectBalance(from);
-        if (amount.compareTo(availableBalance) < 0) {
+        if (amount.compareTo(availableBalance) > 0) {
             throw new NotEnoughMoneyException();
         }
         BigDecimal convertedAmount = amount.multiply(currencyService.getExchangeRate(from, to));

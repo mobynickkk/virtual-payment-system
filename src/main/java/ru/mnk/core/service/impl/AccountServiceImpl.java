@@ -10,9 +10,11 @@ import ru.mnk.domain.entity.Account;
 import ru.mnk.domain.entity.Currency;
 import ru.mnk.domain.entity.Payment;
 import ru.mnk.core.exceptions.NotFoundException;
+import ru.mnk.domain.entity.Status;
 import ru.mnk.domain.repository.AccountRepository;
 import ru.mnk.core.service.api.AccountService;
 import ru.mnk.core.service.api.Balance;
+import ru.mnk.domain.repository.PaymentSystemRepository;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -23,9 +25,10 @@ import java.util.Set;
 @AllArgsConstructor
 public class AccountServiceImpl implements AccountService {
     private final AccountRepository accountRepository;
+    private final PaymentSystemRepository paymentSystemRepository;
 
     @Override
-    @Transactional(readOnly = true, propagation = Propagation.MANDATORY)
+    @Transactional(readOnly = true)
     public Balance getBalance(Account account) {
         Set<Payment> receivedPayments = account.getReceivedPayments();
         Set<Payment> sentPayments = account.getSentPayments();
@@ -38,9 +41,19 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     @SneakyThrows
-    @Transactional(readOnly = true, propagation = Propagation.MANDATORY)
+    @Transactional(readOnly = true)
     public Account getAccount(Long id) {
         return accountRepository.findById(id).orElseThrow(NotFoundException::new);
+    }
+
+    @Override
+    @SneakyThrows
+    @Transactional
+    public Account createAccount(Long paymentSystemId) {
+        Account account = new Account();
+        account.setPaymentSystem(paymentSystemRepository.findById(paymentSystemId).orElseThrow(NotFoundException::new));
+        account.setStatus(Status.WORKING);
+        return accountRepository.save(account);
     }
 
     private static HashMap<Currency, BigDecimal> getBalanceMap(Set<Payment> receivedPayments) {

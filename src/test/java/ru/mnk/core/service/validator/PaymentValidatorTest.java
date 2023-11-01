@@ -33,7 +33,6 @@ public class PaymentValidatorTest  {
     }
 
     @Test
-
     public void testOkPayment() throws ValidationException {
         Payment payment = new Payment();
         payment.setAmount(BigDecimal.TEN);

@@ -33,7 +33,7 @@ public class AccountServiceTest {
     private static final CurrencyService currencyService = mock(CurrencyService.class);
     private static final AccountRepository accountRepository = mock(AccountRepository.class);
     @InjectMocks
-    private final AccountServiceImpl accountService = new AccountServiceImpl(accountRepository);
+    private final AccountServiceImpl accountService = new AccountServiceImpl(accountRepository, null);
 
     @BeforeAll
     public static void before() {

@@ -13,6 +13,8 @@ import java.util.Objects;
 @Table(name = "currencies")
 public class Currency {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "currencies_seq")
+    @SequenceGenerator(name = "currencies_seq", sequenceName = "currencies_seq", allocationSize=1)
     private Long id;
 
     @Column(name = "code", nullable = false)

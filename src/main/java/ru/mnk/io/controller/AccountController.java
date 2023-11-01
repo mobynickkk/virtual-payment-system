@@ -2,9 +2,7 @@ package ru.mnk.io.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import ru.mnk.domain.entity.Account;
 import ru.mnk.core.service.api.AccountService;
@@ -27,6 +25,16 @@ public class AccountController {
             return ResponseEntity.ok(balanceConverter.convert(balance));
         } catch (Exception e) {
             return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    @PostMapping("/new")
+    public ResponseEntity createAccount(@RequestBody Long paymentSystemId) {
+        try {
+            Account account = accountService.createAccount(paymentSystemId);
+            return ResponseEntity.ok(account.getId());
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(e.getMessage());
         }
     }
 }

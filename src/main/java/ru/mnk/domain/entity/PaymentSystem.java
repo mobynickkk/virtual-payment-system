@@ -13,6 +13,8 @@ import java.util.Set;
 @Table(name = "payment_systems")
 public class PaymentSystem {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ps_seq")
+    @SequenceGenerator(name = "ps_seq", sequenceName = "ps_seq", allocationSize=1)
     private Long id;
 
     @OneToOne(mappedBy = "paymentSystem")
