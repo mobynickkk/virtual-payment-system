@@ -9,9 +9,9 @@ public interface CurrencyService {
 
     Currency getCurrency(String code, PaymentSystem paymentSystem);
 
-    Currency addCurrency(String code, PaymentSystem paymentSystem);
+    Currency createCurrency(String code, PaymentSystem paymentSystem);
 
-    void removeCurrency(String code, PaymentSystem paymentSystem);
+    void deleteCurrency(String code, PaymentSystem paymentSystem);
 
     /**
      * Установить обменный курс между валютами

@@ -4,25 +4,18 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import ru.mnk.domain.entity.Account;
-import ru.mnk.core.service.api.AccountService;
-import ru.mnk.core.service.api.Balance;
-import ru.mnk.io.converter.BalanceConverter;
+import ru.mnk.core.service.api.facade.AccountFacade;
 
 @RestController
 @RequestMapping("/accounts")
 @AllArgsConstructor
 public class AccountController {
-    private final AccountService accountService;
-    private final BalanceConverter balanceConverter;
+    private final AccountFacade accountFacade;
 
     @GetMapping("/balance")
     public ResponseEntity getBalance(Long id) {
         try {
-            Account account = accountService.getAccount(id);
-            Balance balance = accountService.getBalance(account);
-            account.setLastCalculatedBalance(balance);
-            return ResponseEntity.ok(balanceConverter.convert(balance));
+            return ResponseEntity.ok(accountFacade.getBalance(id));
         } catch (Exception e) {
             return ResponseEntity.internalServerError().build();
         }
@@ -31,8 +24,7 @@ public class AccountController {
     @PostMapping("/new")
     public ResponseEntity createAccount(@RequestBody Long paymentSystemId) {
         try {
-            Account account = accountService.createAccount(paymentSystemId);
-            return ResponseEntity.ok(account.getId());
+            return ResponseEntity.ok(accountFacade.createAccount(paymentSystemId).getId());
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body(e.getMessage());
         }

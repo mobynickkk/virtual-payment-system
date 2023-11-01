@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ru.mnk.core.service.api.PaymentSystemService;
+import ru.mnk.core.service.api.facade.PaymentSystemFacade;
 import ru.mnk.domain.entity.RootAccount;
 
 import java.util.Optional;
@@ -16,12 +16,12 @@ import java.util.Optional;
 @RequestMapping("/systems")
 @AllArgsConstructor
 public class PaymentSystemController {
-    private final PaymentSystemService paymentSystemService;
+    private final PaymentSystemFacade paymentSystemFacade;
 
     @PostMapping("/new")
     public ResponseEntity createNewPaymentSystem() {
         try {
-            return ResponseEntity.ok(paymentSystemService.createNewPaymentSystem().getId());
+            return ResponseEntity.ok(paymentSystemFacade.createPaymentSystem().getId());
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body(e.getMessage());
         }
@@ -30,8 +30,8 @@ public class PaymentSystemController {
     @GetMapping("/root")
     public ResponseEntity getRootAccount(Long id) {
         try {
-            Long rootId = Optional.of(paymentSystemService.getPaymentSystem(id).getRootAccount())
-                    .map(RootAccount::getId).orElse(0l);
+            Long rootId = Optional.of(paymentSystemFacade.getRootAccount(id))
+                    .map(RootAccount::getId).orElse(0L);
             return ResponseEntity.ok(rootId);
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body(e.getMessage());
@@ -41,9 +41,8 @@ public class PaymentSystemController {
     @PostMapping("/root")
     public ResponseEntity setRootAccount(Long paymentSystemId, Long accountId) {
         try {
-            Long rootId = Optional.of(paymentSystemService.getPaymentSystem(paymentSystemId).getRootAccount())
-                    .map(RootAccount::getId).orElse(0l);
-            return ResponseEntity.ok(rootId);
+            paymentSystemFacade.setRootAccount(paymentSystemId, accountId);
+            return ResponseEntity.ok().build();
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body(e.getMessage());
         }

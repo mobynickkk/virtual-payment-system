@@ -4,9 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-import ru.mnk.domain.entity.Account;
-import ru.mnk.domain.entity.Currency;
-import ru.mnk.domain.entity.Payment;
+import ru.mnk.domain.entity.*;
 import ru.mnk.core.service.api.AccountService;
 import ru.mnk.core.service.api.Balance;
 
@@ -35,7 +33,17 @@ public class AccountServiceStub implements AccountService {
     }
 
     @Override
-    public Account createAccount(Long paymentSystemId) {
+    public Account createAccount(PaymentSystem paymentSystem) {
         return null;
+    }
+
+    @Override
+    public RootAccount convertToRootAccount(Account account) {
+        return null;
+    }
+
+    @Override
+    public void deleteAccount(Account account) {
+
     }
 }

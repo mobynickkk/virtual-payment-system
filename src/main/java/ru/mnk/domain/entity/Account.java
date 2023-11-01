@@ -38,6 +38,11 @@ public class Account {
     @Transient
     private Balance lastCalculatedBalance;
 
+    @Transient
+    public Boolean isRoot() {
+        return false;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

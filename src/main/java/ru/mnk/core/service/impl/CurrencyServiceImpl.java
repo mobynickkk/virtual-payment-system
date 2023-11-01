@@ -35,7 +35,7 @@ public class CurrencyServiceImpl implements CurrencyService {
 
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
-    public Currency addCurrency(String code, PaymentSystem paymentSystem) {
+    public Currency createCurrency(String code, PaymentSystem paymentSystem) {
         Optional<Currency> existingCurrency = currencyRepository.findByCodeAndPaymentSystem(code, paymentSystem);
         if (existingCurrency.isPresent()) {
             return existingCurrency.get();
@@ -50,7 +50,7 @@ public class CurrencyServiceImpl implements CurrencyService {
 
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
-    public void removeCurrency(String code, PaymentSystem paymentSystem) {
+    public void deleteCurrency(String code, PaymentSystem paymentSystem) {
         Optional<Currency> existingCurrency = currencyRepository.findByCodeAndPaymentSystem(code, paymentSystem);
         if (existingCurrency.isEmpty()) {
             return;

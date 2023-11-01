@@ -10,7 +10,6 @@ import ru.mnk.core.exceptions.NotFoundException;
 import ru.mnk.domain.repository.AccountRepository;
 import ru.mnk.core.service.api.AccountService;
 import ru.mnk.core.service.api.Balance;
-import ru.mnk.domain.repository.PaymentSystemRepository;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -21,7 +20,6 @@ import java.util.Set;
 @AllArgsConstructor
 public class AccountServiceImpl implements AccountService {
     private final AccountRepository accountRepository;
-    private final PaymentSystemRepository paymentSystemRepository;
 
     @Override
     @Transactional(readOnly = true)
@@ -45,9 +43,9 @@ public class AccountServiceImpl implements AccountService {
     @Override
     @SneakyThrows
     @Transactional
-    public Account createAccount(Long paymentSystemId) {
+    public Account createAccount(PaymentSystem paymentSystem) {
         Account account = new Account();
-        account.setPaymentSystem(paymentSystemRepository.findById(paymentSystemId).orElseThrow(NotFoundException::new));
+        account.setPaymentSystem(paymentSystem);
         account.setStatus(Status.WORKING);
         return accountRepository.save(account);
     }

@@ -14,4 +14,9 @@ public class RootAccount extends Account {
         this.setPaymentSystem(account.getPaymentSystem());
         this.setStatus(account.getStatus());
     }
+
+    @Override
+    public Boolean isRoot() {
+        return true;
+    }
 }
