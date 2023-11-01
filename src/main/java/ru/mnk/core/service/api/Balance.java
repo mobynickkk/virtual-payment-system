@@ -1,5 +1,6 @@
 package ru.mnk.core.service.api;
 
+import ru.mnk.core.service.api.service.CurrencyService;
 import ru.mnk.domain.entity.Currency;
 
 import java.math.BigDecimal;

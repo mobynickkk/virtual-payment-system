@@ -5,6 +5,9 @@ import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ru.mnk.core.service.api.service.AccountService;
+import ru.mnk.core.service.api.service.CurrencyService;
+import ru.mnk.core.service.api.service.PaymentService;
 import ru.mnk.domain.entity.Account;
 import ru.mnk.domain.entity.Currency;
 import ru.mnk.domain.entity.Payment;

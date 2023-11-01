@@ -1,4 +1,4 @@
-package ru.mnk.core.service.impl;
+package ru.mnk.core.service.impl.service;
 
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import ru.mnk.domain.repository.PaymentRepository;
-import ru.mnk.core.service.api.PaymentService;
+import ru.mnk.core.service.api.service.PaymentService;
 import ru.mnk.core.service.validator.PaymentValidator;
 import ru.mnk.domain.entity.*;
 

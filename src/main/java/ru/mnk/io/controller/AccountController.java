@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import ru.mnk.domain.entity.Account;
-import ru.mnk.core.service.api.AccountService;
+import ru.mnk.core.service.api.service.AccountService;
 import ru.mnk.core.service.api.Balance;
 import ru.mnk.io.converter.BalanceConverter;
 

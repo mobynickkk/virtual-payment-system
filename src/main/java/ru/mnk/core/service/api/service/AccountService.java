@@ -1,5 +1,6 @@
-package ru.mnk.core.service.api;
+package ru.mnk.core.service.api.service;
 
+import ru.mnk.core.service.api.Balance;
 import ru.mnk.domain.entity.Account;
 
 public interface AccountService {
