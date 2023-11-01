@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.mnk.core.service.api.AccountService;
 import ru.mnk.core.service.api.CurrencyService;
 import ru.mnk.core.service.api.PaymentService;
+import ru.mnk.core.service.api.facade.PaymentCallbackService;
 import ru.mnk.core.service.api.facade.PaymentFacade;
 import ru.mnk.domain.entity.Account;
 import ru.mnk.domain.entity.Currency;
@@ -24,6 +25,7 @@ public class PaymentFacadeImpl implements PaymentFacade {
     private final AccountService accountService;
     private final CurrencyService currencyService;
     private final PaymentService paymentService;
+    private final PaymentCallbackService paymentCallbackService;
 
     @Override
     @Transactional
@@ -44,7 +46,9 @@ public class PaymentFacadeImpl implements PaymentFacade {
         if (amount.compareTo(availableBalance) > 0) {
             throw new NotEnoughMoneyException();
         }
-        return paymentService.transferMoney(amount, currency, sender, receiver);
+        Payment payment = paymentService.transferMoney(amount, currency, sender, receiver);
+        paymentCallbackService.processCallback(payment);
+        return payment;
     }
 
     @Override
@@ -80,7 +84,9 @@ public class PaymentFacadeImpl implements PaymentFacade {
             delta = delta.subtract(sum.multiply(currencyService.getExchangeRate(cur, currency)));
         }
 
-        return paymentService.transferMoney(amount, currency, sender, receiver);
+        Payment payment = paymentService.transferMoney(amount, currency, sender, receiver);
+        paymentCallbackService.processCallback(payment);
+        return payment;
     }
 
     @Override

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ru.mnk.domain.entity.*;
-import ru.mnk.core.exceptions.NotFoundException;
+import ru.mnk.domain.exceptions.NotFoundException;
 import ru.mnk.domain.repository.AccountRepository;
 import ru.mnk.core.service.api.AccountService;
 import ru.mnk.core.service.api.Balance;

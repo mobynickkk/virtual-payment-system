@@ -1,4 +1,4 @@
-package ru.mnk.core.exceptions;
+package ru.mnk.domain.exceptions;
 
 public class NotFoundException extends Exception {
 }

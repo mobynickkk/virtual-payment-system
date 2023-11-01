@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ru.mnk.domain.entity.Currency;
 import ru.mnk.domain.entity.PaymentSystem;
-import ru.mnk.core.exceptions.NotFoundException;
+import ru.mnk.domain.exceptions.NotFoundException;
 import ru.mnk.domain.repository.CurrencyRepository;
 import ru.mnk.core.service.api.CurrencyService;
 

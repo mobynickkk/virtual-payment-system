@@ -5,7 +5,7 @@ import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import ru.mnk.core.exceptions.NotFoundException;
+import ru.mnk.domain.exceptions.NotFoundException;
 import ru.mnk.core.service.api.AccountService;
 import ru.mnk.core.service.api.PaymentSystemService;
 import ru.mnk.domain.entity.Account;
