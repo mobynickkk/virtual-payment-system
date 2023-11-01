@@ -1,4 +1,4 @@
-package ru.mnk.core.service.api.service;
+package ru.mnk.core.service.api;
 
 import ru.mnk.domain.entity.Account;
 import ru.mnk.domain.entity.Currency;

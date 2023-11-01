@@ -7,11 +7,10 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import ru.mnk.core.service.impl.service.AccountServiceImpl;
 import ru.mnk.domain.entity.Account;
 import ru.mnk.domain.entity.Currency;
 import ru.mnk.domain.entity.Payment;
-import ru.mnk.core.service.api.service.CurrencyService;
+import ru.mnk.core.service.api.CurrencyService;
 import ru.mnk.domain.repository.AccountRepository;
 
 import java.math.BigDecimal;

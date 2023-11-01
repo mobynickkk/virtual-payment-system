@@ -1,4 +1,4 @@
-package ru.mnk.core.service.impl.service;
+package ru.mnk.core.service.impl;
 
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
@@ -10,7 +10,7 @@ import ru.mnk.domain.entity.Currency;
 import ru.mnk.domain.entity.PaymentSystem;
 import ru.mnk.core.exceptions.NotFoundException;
 import ru.mnk.domain.repository.CurrencyRepository;
-import ru.mnk.core.service.api.service.CurrencyService;
+import ru.mnk.core.service.api.CurrencyService;
 
 import java.math.BigDecimal;
 import java.math.MathContext;

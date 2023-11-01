@@ -1,13 +1,14 @@
-package ru.mnk.core.service.impl;
+package ru.mnk.core.service.impl.facade;
 
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import ru.mnk.core.service.api.service.AccountService;
-import ru.mnk.core.service.api.service.CurrencyService;
-import ru.mnk.core.service.api.service.PaymentService;
+import ru.mnk.core.service.api.AccountService;
+import ru.mnk.core.service.api.CurrencyService;
+import ru.mnk.core.service.api.PaymentService;
+import ru.mnk.core.service.api.facade.PaymentFacade;
 import ru.mnk.domain.entity.Account;
 import ru.mnk.domain.entity.Currency;
 import ru.mnk.domain.entity.Payment;

@@ -1,17 +1,14 @@
-package ru.mnk.core.service.impl.service;
+package ru.mnk.core.service.impl;
 
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import ru.mnk.domain.entity.Account;
-import ru.mnk.domain.entity.Currency;
-import ru.mnk.domain.entity.Payment;
+import ru.mnk.domain.entity.*;
 import ru.mnk.core.exceptions.NotFoundException;
-import ru.mnk.domain.entity.Status;
 import ru.mnk.domain.repository.AccountRepository;
-import ru.mnk.core.service.api.service.AccountService;
+import ru.mnk.core.service.api.AccountService;
 import ru.mnk.core.service.api.Balance;
 import ru.mnk.domain.repository.PaymentSystemRepository;
 
@@ -53,6 +50,21 @@ public class AccountServiceImpl implements AccountService {
         account.setPaymentSystem(paymentSystemRepository.findById(paymentSystemId).orElseThrow(NotFoundException::new));
         account.setStatus(Status.WORKING);
         return accountRepository.save(account);
+    }
+
+    @Override
+    @Transactional
+    public RootAccount convertToRootAccount(Account account) {
+        RootAccount rootAccount = new RootAccount(account);
+        accountRepository.delete(account);
+        accountRepository.flush();
+        accountRepository.save(rootAccount);
+        return rootAccount;
+    }
+
+    @Override
+    public void deleteAccount(Account account) {
+        accountRepository.delete(account);
     }
 
     private static HashMap<Currency, BigDecimal> getBalanceMap(Set<Payment> receivedPayments) {

@@ -7,4 +7,11 @@ import jakarta.persistence.Entity;
 @DiscriminatorValue("root")
 public class RootAccount extends Account {
 
+    public RootAccount() {}
+
+    public RootAccount(Account account) {
+        this.setId(account.getId());
+        this.setPaymentSystem(account.getPaymentSystem());
+        this.setStatus(account.getStatus());
+    }
 }

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ru.mnk.core.service.api.service.PaymentSystemService;
+import ru.mnk.core.service.api.PaymentSystemService;
 import ru.mnk.domain.entity.RootAccount;
 
 import java.util.Optional;

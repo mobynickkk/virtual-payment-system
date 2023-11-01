@@ -7,7 +7,7 @@ import lombok.Setter;
 import ru.mnk.domain.entity.Account;
 import ru.mnk.domain.entity.Currency;
 import ru.mnk.domain.entity.Payment;
-import ru.mnk.core.service.api.service.AccountService;
+import ru.mnk.core.service.api.AccountService;
 import ru.mnk.core.service.api.Balance;
 
 import java.math.BigDecimal;
