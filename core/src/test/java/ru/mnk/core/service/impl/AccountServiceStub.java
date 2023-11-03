@@ -6,7 +6,7 @@ import lombok.Setter;
 
 import ru.mnk.domain.entity.*;
 import ru.mnk.core.service.api.AccountService;
-import ru.mnk.core.service.api.Balance;
+import ru.mnk.domain.transients.Balance;
 
 import java.math.BigDecimal;
 import java.util.Map;
