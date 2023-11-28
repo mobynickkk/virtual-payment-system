@@ -4,8 +4,17 @@
   <groupId>ru.mnk</groupId>
   <artifactId>virtual-payment-system</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <name>virtual-payment-system</name>
+    <packaging>pom</packaging>
+    <name>virtual-payment-system</name>
   <url>http://maven.apache.org</url>
+    <modules>
+        <module>domain</module>
+        <module>core</module>
+        <module>io</module>
+        <module>app</module>
+        <module>io-dto</module>
+        <module>kafka</module>
+    </modules>
 
     <parent>
         <groupId>ru.mnk</groupId>
